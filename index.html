@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0b1016">
+<title>Frontier Drop — Battle Royale</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <div id="menu" class="overlay">
+    <div class="brand">FRONTIER <span>DROP</span><small>TACTICAL BATTLE ROYALE · PLAYABLE PROTOTYPE</small></div>
+    <div class="menu-card">
+      <h1>Enter the frontier.</h1>
+      <p>Survive the zone. Gear up. Be the last operator standing.</p>
+      <label>Battlefield
+        <select id="mapSelect">
+          <option value="verdant">Verdant Basin · Temperate island</option>
+          <option value="dune">Red Dune · Arid badlands</option>
+          <option value="frost">Frostline · Snow frontier</option>
+          <option value="evo">EVO Frontier · Changing battlefield</option>
+        </select>
+      </label>
+      <label>Match style
+        <select id="modeSelect"><option value="solo">Solo · 1 player + bots</option><option value="squad">Squad simulation · allied support</option></select>
+      </label>
+      <div class="menu-actions"><button id="startBtn" class="primary">DEPLOY</button><button id="howBtn">CONTROLS</button></div>
+      <div id="how" class="help hidden">Move: WASD / arrow keys · Aim: mouse · Fire: click or Space · Reload: R · Medkit: H · Interact/loot: E · Sprint: Shift · Pause: Esc. Touch: use the on-screen controls.</div>
+      <div class="disclaimer">Original fan-made prototype concept. Not affiliated with PUBG. No online multiplayer, accounts, purchases, or licensed assets are included.</div>
+    </div>
+  </div>
+  <canvas id="game"></canvas>
+  <div id="hud" class="hidden">
+    <div class="topbar"><div class="pill" id="mapName">VERDANT BASIN</div><div class="pill" id="phase">ZONE PREPARING</div><div class="pill">ALIVE <b id="alive">25</b></div><div class="pill">ELIMS <b id="kills">0</b></div><button id="pauseBtn">Ⅱ</button></div>
+    <div class="leftstack"><div class="panel"><div class="label">OPERATOR</div><div class="bar"><i id="healthBar"></i></div><div class="statrow"><span>HP</span><b id="healthText">100</b><span>ARMOR</span><b id="armorText">0</b></div><div class="bar armor"><i id="armorBar"></i></div></div>
+    <div class="panel"><div class="label">LOADOUT</div><div class="weapon" id="weaponName">RANGER AR</div><div class="statrow"><span>AMMO</span><b id="ammo">30 / 120</b></div><div class="statrow"><span>MEDKITS</span><b id="medkits">2</b></div><div class="statrow"><span>BOOST</span><b id="boost">0%</b></div><div class="statrow"><span>BACKPACK</span><b id="capacity">12 / 30</b></div></div></div>
+    <div class="rightstack"><div class="panel radar-panel"><div class="label">TACTICAL RADAR</div><canvas id="radar" width="160" height="160"></canvas></div><div class="panel"><div class="label">OBJECTIVES</div><div id="objective">Loot, rotate, survive.</div><div class="small" id="zoneHint">Move inside the safe zone.</div></div></div>
+    <div class="bottom-center"><div id="toast"></div><div class="actionhint" id="actionhint">E · PICK UP NEARBY LOOT</div><div class="compass" id="compass">N · NE · E · SE · S · SW · W · NW</div></div>
+    <div class="killfeed" id="killfeed"></div>
+    <div class="mobile-controls"><div class="stick" id="stick">MOVE</div><div class="touch-actions"><button id="touchFire">FIRE</button><button id="touchReload">R</button><button id="touchMed">H</button><button id="touchLoot">E</button></div></div>
+    <div class="inventory hidden" id="inventory"><div class="inventory-head"><h2>FIELD INVENTORY</h2><button id="closeInv">✕</button></div><div class="inventory-grid" id="inventoryGrid"></div><p>Press E to loot nearby supplies. This prototype uses a simplified inventory model.</p></div>
+  </div>
+  <div id="pause" class="overlay hidden"><div class="menu-card compact"><h2>PAUSED</h2><p>Take a breath. The frontier waits.</p><button id="resumeBtn" class="primary">RESUME</button><button id="restartBtn">REDEPLOY</button><button id="quitBtn">MAIN MENU</button></div></div>
+  <div id="end" class="overlay hidden"><div class="menu-card compact"><div class="brand smallbrand">FRONTIER <span>DROP</span></div><h1 id="endTitle">MATCH COMPLETE</h1><p id="endDesc"></p><div class="resultgrid"><div><small>ELIMINATIONS</small><b id="endKills">0</b></div><div><small>SURVIVAL</small><b id="endTime">0:00</b></div><div><small>SUPPLIES</small><b id="endLoot">0</b></div></div><button id="againBtn" class="primary">PLAY AGAIN</button><button id="menuBtn">MAIN MENU</button></div></div>
+  <div class="corner-note">FRONTIER DROP · LOCAL SIMULATION</div>
+</div>
+<script src="game.js"></script>
+</body></html>
